@@ -16,3 +16,7 @@ body {
     text-align: center;
     border: 1px solid black;
 }
+
+#display {
+    margin-bottom: 20px;
+}
