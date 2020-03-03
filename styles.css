@@ -1,22 +1,64 @@
+* {
+    margin: 0 auto;
+}
 body {
     height: 100%;
     margin: 0;
+    justify-content: center;
 }
 
 #gameboard {
-    height: 100%;
+    width: 700px;
+    max-width: 700px;
+    height: 90%;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: center;
+}
+
+#scorecard {
+    display: flex;
+    justify-content: start;
+    width: 700px;
+    margin: auto;
+    color: blue;
+    font-size: 30px;
+}
+
+#scorecard b {
+    margin: 0 1em 0 0;
 }
 
 .boardcell {
-    width: 25%;
-    height: 25%;
+    max-height: 233px;
+    margin-top: 1em;
+    flex: 0 0 33%;
     text-align: center;
     border: 1px solid black;
+    cursor: pointer;
 }
 
 #display {
     margin-bottom: 20px;
+    display: flex;
+    width: 700px;
+    margin: auto;
+    color: blue;
+    font-size: 30px;
+}
+
+#flash {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    display: none;
+    position: fixed;
+    justify-content: center;
+    margin: auto;
+    margin-top: 200px;
+    z-index: 1;
+    background-color: blueviolet;
+    color: black;
+    font-size: 60px;
+    border: 3px solid black;
 }
