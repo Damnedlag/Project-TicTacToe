@@ -1,16 +1,26 @@
-const Player = (name, sign) => {
-    let score = 0;
-    const getName = () => name;
-    const getSign = () => sign;
-    return {getName, getSign, score}
-}
-
-// const playerOne = Player(prompt('Select a name for palyer one.'), 'x')
-// const playerTwo = Player(prompt('Select a name for player two.'), 'o')
-const playerOne = Player('Jim', 'x')
-const playerTwo = Player('Mij', 'o')
-
 const Gameboard = (() => {
+    const Player = (name, sign) => {
+        let score = 0;
+        const getName = () => name;
+        const getSign = () => sign;
+        return {getName, getSign, score}
+    }
+
+    const getPlayerName = (name, sign) => {
+        let answer = prompt(`Select a name for ${name}`, name)
+        if (answer && answer.length < 13) {
+            return Player(answer, sign)
+        }
+        else
+        {
+        alert('Please provide a name with a length between 1 and 12 characters.');
+        return getPlayerName(name, sign);
+        }
+    }
+
+    const playerOne = getPlayerName('Player one', 'x');
+    const playerTwo = getPlayerName('Player two', 'o');
+
     const flash = (textToFlash) => {
         const flashbox = document.getElementById('flash');
         flashbox.innerHTML = textToFlash;
@@ -33,15 +43,6 @@ const Gameboard = (() => {
         Scorecard();
     })
 
-    const announceWinner = (winner) => {
-        if (playerTwo.score === playerOne.score) {alert('It\'s a tie!')}
-        else {
-        alert(`The winner is ${winner.getName()}.`);
-        }
-        playerOne.score = 0;
-        playerTwo.score = 0;
-        Scorecard();
-    };
     Scorecard();
     let boardCells = document.getElementsByClassName('boardcell');
     let turn = 1;
@@ -51,8 +52,16 @@ const Gameboard = (() => {
         for (let i = 0; i < boardCells.length; i++) {boardCells[i].innerHTML = ''}
         ++winner.score;
         Scorecard();
-        if (winner.score === 3 && playerOne.score != playerTwo.score) {announceWinner(winner)}
-    }
+
+    //     if they game had score limit to reach, this would check for winner
+    //     if (winner.score === 3) {
+    //     alert(`The winner is ${winner.getName()}.`);
+    //     playerOne.score = 0;
+    //     playerTwo.score = 0;
+    //     Scorecard();
+    // }
+        }
+        
     for (i = 1; i <= 9; i++) {
         const b = document.getElementById('gameboard')
         let d = document.createElement('div')
@@ -60,7 +69,7 @@ const Gameboard = (() => {
         d.className = 'boardcell'
         b.appendChild(d)
         d.addEventListener('click', e = () => {
-            if (d.innerHTML === 'x' || d.innerHTML === 'o') {
+            if (d.innerHTML != '') {
                 return flash('Pick an unused tile.')
             }
             turn % 2 ? s = playerOne.getSign() : s = playerTwo.getSign();
@@ -96,9 +105,5 @@ const Gameboard = (() => {
             flash('It\'s a tie!');
         }
         })
-        // const flash = (textToFlash) => {
-        //     document.getElementById('flash').innerHTML = textToFlash
-        //     t = window.setTimeout(() => {document.getElementById('flash').innerHTML = ''}, 800)
-        // }
     }
 })();

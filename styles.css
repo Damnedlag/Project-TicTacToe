@@ -3,11 +3,13 @@
 }
 body {
     height: 100%;
+    background: linear-gradient(white, rgb(158, 158, 157));
     margin: 0;
     justify-content: center;
 }
 
 #gameboard {
+    height: 90%;
     width: 700px;
     max-width: 700px;
     height: 90%;
@@ -21,7 +23,7 @@ body {
     justify-content: start;
     width: 700px;
     margin: auto;
-    color: blue;
+    color: rgb(63, 63, 189);
     font-size: 30px;
 }
 
@@ -30,12 +32,14 @@ body {
 }
 
 .boardcell {
-    max-height: 233px;
-    margin-top: 1em;
+    max-height: 200px;
+    min-height: 200px;
+    margin-top: 10px;
     flex: 0 0 33%;
     text-align: center;
     border: 1px solid black;
     cursor: pointer;
+    font-size: 90px;
 }
 
 #display {
@@ -48,10 +52,12 @@ body {
 }
 
 #flash {
-    height: 100px;
-    width: 100%;
+    padding: 0;
+    height: 125px;
+    width: 700px;
     text-align: center;
     display: none;
+    vertical-align: baseline;
     position: fixed;
     justify-content: center;
     margin: auto;
